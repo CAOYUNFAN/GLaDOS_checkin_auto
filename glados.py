@@ -13,6 +13,10 @@ if __name__ == "__main__":
     if cookie == "":
         print("未获取到COOKIE变量")
         exit(1)
+
+    print("cookie:", cookie)
+    print("sckey:", sckey)
+
     url = "https://glados.rocks/api/user/checkin"
     url2 = "https://glados.rocks/api/user/status"
     referer = "https://glados.rocks/console/checkin"
@@ -39,6 +43,7 @@ if __name__ == "__main__":
             "user-agent": useragent,
         },
     )
+    print(state.json())
     # --------------------------------------------------------------------------------------------------------#
     time = state.json()["data"]["leftDays"]
     time = time.split(".")[0]
