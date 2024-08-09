@@ -14,9 +14,6 @@ if __name__ == "__main__":
         print("未获取到COOKIE变量")
         exit(1)
 
-    print("cookie:", cookie)
-    print("sckey:", sckey)
-
     url = "https://glados.rocks/api/user/checkin"
     url2 = "https://glados.rocks/api/user/status"
     referer = "https://glados.rocks/console/checkin"
@@ -34,6 +31,7 @@ if __name__ == "__main__":
         },
         data=json.dumps(payload),
     )
+
     state = requests.get(
         url2,
         headers={
@@ -42,12 +40,10 @@ if __name__ == "__main__":
             "origin": origin,
             "user-agent": useragent,
         },
-    )
-    print(state.json())
-    # --------------------------------------------------------------------------------------------------------#
-    time = state.json()["data"]["leftDays"]
-    time = time.split(".")[0]
-    email = state.json()["data"]["email"]
+    ).json()
+
+    time = state["data"]["leftDays"].split(".")[0]
+    email = state["data"]["email"]
     if "message" in checkin.text:
         mess = checkin.json()["message"]
         print(
