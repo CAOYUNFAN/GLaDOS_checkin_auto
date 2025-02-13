@@ -41,6 +41,7 @@ if __name__ == "__main__":
             "user-agent": useragent,
         },
     ).json()
+    print(state)
 
     time = state["data"]["leftDays"].split(".")[0]
     email = state["data"]["email"]
